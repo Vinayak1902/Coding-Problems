@@ -1,0 +1,53 @@
+Backtrack + visited array - 
+class Solution:
+
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        rows, cols = len(board), len(board[0])
+        dirs = [[0,-1],[-1,0],[1,0],[0,1]]
+        def dfs(r,c,visited,i):
+            if i == len(word):
+                return True
+            visited[r][c] = True
+            for dx,dy in dirs:
+                if r+dx>=0 and r+dx<len(board) and c+dy>=0 and c+dy<len(board[0]) and visited[dx+r][dy+c] == False and board[dx+r][dy+c] == word[i]:
+                    if dfs(dx+r,dy+c,visited,i+1):
+                        return True
+            visited[r][c] = False
+            return False
+
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c] == word[0]:
+                    visited = [[False]*cols for _ in range(rows)]
+                    if dfs(r,c,visited,1):
+                        return True
+        return False
+        
+TC - O(r*c*4^l)
+SC - O(r*c + l)
+
+Backtracking(optimal) - 
+class Solution:
+
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        rows, cols = len(board), len(board[0])
+        dirs = [[0,-1],[-1,0],[1,0],[0,1]]
+        def dfs(r,c,i):
+            if i == len(word):
+                return True
+            board[r][c] = '#'
+            for dx,dy in dirs:
+                if r+dx>=0 and r+dx<len(board) and c+dy>=0 and c+dy<len(board[0]) and board[dx+r][dy+c] == word[i]:
+                    if dfs(dx+r,dy+c,i+1):
+                        return True
+            board[r][c] = word[i-1]
+            return False
+
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c] == word[0]:
+                    if dfs(r,c,1):
+                        return True
+        return False
+TC - O(r*c*4^l)
+SC - O(r*c + l)
