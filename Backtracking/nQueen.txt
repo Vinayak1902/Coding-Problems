@@ -1,0 +1,76 @@
+🎯 Time Complexity
+✅ Worst-case Time Complexity:
+𝑂
+(
+𝑛
+!
+)
+O(n!)
+	​
+
+⚠️ Why Not 
+𝑛
+𝑛
+n
+n
+ ?
+
+Because:
+
+You cannot reuse columns
+
+So branching factor decreases at every level
+
+It's not n choices at every level
+
+It's a permutation-style search
+
+So the recursion tree resembles permutations → factorial growth.
+
+📌 More Precise View
+
+Actually, diagonal constraints prune even more branches.
+
+So the actual runtime is less than n!, but:
+
+𝑊
+𝑜
+𝑟
+𝑠
+𝑡
+ 
+𝑐
+𝑎
+𝑠
+𝑒
+=
+𝑂
+(
+𝑛
+!
+)
+Worst case=O(n!)
+	​
+
+
+That’s the accepted complexity in interviews and textbooks.
+
+🧠 Space Complexity
+
+Recursion stack → O(n)
+
+Board → O(n²)
+
+Sets → O(n)
+
+So overall space:
+
+𝑂
+(
+𝑛
+2
+)
+O(n
+2
+)
+	​
